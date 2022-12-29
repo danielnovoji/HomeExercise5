@@ -25,7 +25,7 @@ public class User {
         this.isMediator=isMediator;
     }
 
-    String getUserName() {
+    public String getUserName() {
         return this.userName;
     }
     public String toString () {
@@ -34,13 +34,13 @@ public class User {
 
         return output;
     }
-    String getPassword () {
+    public String getPassword () {
         return this.password;
     }
     public boolean getIsMediator () {
         return this.isMediator;
     }
-    boolean passwordValidation(String userPassword) {
+    public boolean passwordValidation(String userPassword) {
         boolean isValid = true;
         String digits = "0123456789";
         String necessaryChar = "%_$";
@@ -61,7 +61,7 @@ public class User {
 
     }
 
-    boolean checkPhoneNumber(String phoneNumber) {
+    public boolean checkPhoneNumber(String phoneNumber) {
         boolean isValid = true;
         String numbers = "0123456789";
         if (phoneNumber.length() != 10) {

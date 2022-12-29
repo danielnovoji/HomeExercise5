@@ -10,9 +10,17 @@ public class Finals {
     public static final int EXIT_PROGRAM = 3;
     public static final int USER_PROPERTY_LIMIT = 2;
     public static final int MEDIATOR_PROPERTY_LIMIT = 5;
-    public static final int PENTHOUSE = 1;
-    public static final int APARTMENT = 2;
+    public static final int APARTMENT = 1;
+    public static final int PENTHOUSE = 2;
     public static final int PRIVATE_HOUSE = 3;
     public static final int FOR_SALE=1;
     public static final int FOR_RENT=2;
+    public static final int POST_PROPERTY=1;
+    public static final int REMOVE_PROPERTY=2;
+    public static final int PRINT_ALL_PROPERTIES=3;
+    public static final int PRINT_YOUR_PROPERTIES=4;
+    public static final int SEARCH_BY_DEFAULTS = 5;
+    public static final int LOG_OUT_TO_MAIN_MENU = 6;
+
+    // TO ADD FINAL FOR PROPERTY SEARCH -999 and MORE.
 }

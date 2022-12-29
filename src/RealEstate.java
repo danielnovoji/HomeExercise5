@@ -5,35 +5,35 @@ public class RealEstate {
     private Property[] properties;
     private City[] cities = new City[10];
 
-    public RealEstate() { //CHANGE IT YOU BITCH
-        this.cities[0] = new City("Eilat", "Negev-District", "HaTmarim Shachamon Nirit");
-        this.cities[1] = new City("Beer-Sheva", "Negev-District", "Bialik Rambam Hatzvi");
-        this.cities[2] = new City("Kiryat-Gat", "HaDarom-District", "Hashoftim Tzaal Lachish");
-        this.cities[3] = new City("Ashkelon", "HaDarom-District", "Neve-Shalom Rabin Bialik");
-        this.cities[4] = new City("Tel-Aviv", "Central-District", "Morozov Dizingof Avital");
-        this.cities[5] = new City("Ramat-Gan", "Central-District", "Avigail Einstein Alonim");
-        this.cities[6] = new City("Hertzelia", "HaSharon-District", "Marina Kaplan Beeri");
-        this.cities[7] = new City("Netanya", "HaSharon-District", "Sokolov Herzel Remez");
-        this.cities[8] = new City("Harish", "Northen-District", "Gefen Alon Rimon");
-        this.cities[9] = new City("Haifa", "Northen-District", "Oren Hilel Nesher");
+    public RealEstate() {
+        this.cities[0] = new City("Arad", "Negev-District", "Anafa Ankor Hasida");
+        this.cities[1] = new City("Beer-Sheva", "Negev-District", "Yosiyahu Bnei-Or Kafrisin");
+        this.cities[2] = new City("Sderot", "HaDarom-District", "Nizsan Arazim Herzog ");
+        this.cities[3] = new City("Ashkelon", "HaDarom-District", "Lakhish Rashi Tsahal");
+        this.cities[4] = new City("Bat-Yam", "Central-District", "Rabi-Binyamin Brenner Keren-HaYesod");
+        this.cities[5] = new City("Holon", "Central-District", "Mota-Gur Imber Motskin");
+        this.cities[6] = new City("Ramat-HaSharon", "HaSharon-District", "Mordehai Rambam Tavor");
+        this.cities[7] = new City("Kfar-Saba", "HaSharon-District", "Jerusalem Yehuda Pinkas");
+        this.cities[8] = new City("Nesher", "Northen-District", "Perets Eshkolot Dukhifat");
+        this.cities[9] = new City("Acre", "Northen-District", "Gad Shimon Reuven");
     }
 
 
-    void createUser() {
+    public void createUser() {
 
         Scanner scanner = new Scanner(System.in);
         boolean isExist = true;
         boolean isValid = false;
-        String userName="";
+        String userName = "";
         String userPass = "";
         String phoneNumber = "";
-            do {
-                if (isExist==false){
-                    System.out.println("This name is taken, try another name: ");
-                }
-                System.out.println("Enter a new username: ");
-                userName = scanner.nextLine();
-                if (users != null) {
+        do {
+            if (isExist == false) {
+                System.out.println("This name is taken, try another name: ");
+            }
+            System.out.println("Enter a new username: ");
+            userName = scanner.nextLine();
+            if (users != null) {
                 int i;
                 for (i = 0; i < users.length; i++) {
                     if (users[i].getUserName().equals(userName)) {
@@ -41,10 +41,11 @@ public class RealEstate {
                         break;
                     }
                 }
-                if (i==users.length){
-                    isExist=true;
-                } }
-            }while (isExist==false);
+                if (i == users.length) {
+                    isExist = true;
+                }
+            }
+        } while (isExist == false);
 
         while (isValid == false) {
             System.out.println("Enter a valid password: ");
@@ -79,7 +80,7 @@ public class RealEstate {
         users = insertNewUser(users, user);
     }
 
-    boolean passwordValidation(String userPassword) {
+    private boolean passwordValidation(String userPassword) {
         boolean isValid = true;
         String digits = "0123456789";
         String necessaryChar = "%_$";
@@ -100,7 +101,7 @@ public class RealEstate {
 
     }
 
-    boolean checkPhoneNumber(String phoneNumber) {
+    private boolean checkPhoneNumber(String phoneNumber) {
         boolean isValid = true;
         String numbers = "0123456789";
         if (phoneNumber.length() != 10) {
@@ -120,14 +121,14 @@ public class RealEstate {
         return isValid;
     }
 
-    User[] insertNewUser(User[] users, User user) {
+    private User[] insertNewUser(User[] users, User user) {
         User[] newUsers;
         if (users != null) {
             newUsers = new User[users.length + Finals.FIRST_NUMBER];
             for (int i = 0; i < users.length; i++) {
                 newUsers[i] = users[i];
             }
-        }else {
+        } else {
             newUsers = new User[Finals.FIRST_NUMBER];
         }
         newUsers[newUsers.length - 1] = user;
@@ -159,10 +160,19 @@ public class RealEstate {
     public boolean postNewProperty(User user) {
         Scanner scanner = new Scanner(System.in);
         String cityName;
+        City chosenCity;
         String streetName;
+        int propertyType;
+        int floor = 0;
+        float roomQuantity;
+        int houseNumber;
+        boolean isForRent;
+        double price;
+        int saleOrRent;
         boolean isPropertyPublished = true;
         int counter = 0;
-        for (int i = 0; i < properties.length; i++) {
+        if (this.properties!=null){
+        for (int i = 0; i < this.properties.length; i++) {
             if (user.getUserName().equals(this.properties[i].getUser().getUserName())) {
                 counter++;
             }
@@ -173,7 +183,7 @@ public class RealEstate {
         } else if (user.getIsMediator() == false && Finals.USER_PROPERTY_LIMIT == counter) {
             isPropertyPublished = false;
             System.out.println("You've reached your property limit! ");
-        }
+        }}
         if (isPropertyPublished == true) {
             System.out.println("The cities are: ");
             for (int i = 0; i < this.cities.length; i++) {
@@ -209,11 +219,65 @@ public class RealEstate {
                 if (isEqualToStreetList == false) {
                     System.out.println("The name of the street you've typed is invalid: ");
                     isPropertyPublished = false;
-                } else { //COME BACK LATER!
+                } else {
+                    chosenCity = new City(cityName, this.cities[i].getGeographicDistrict(), streetName);
+
+                    System.out.println("""
+                            What type of property you want to publish? \s
+                            1.Apartment.
+                            2.Penthouse.
+                            3.Private house.\s""");
+                    propertyType = scanner.nextInt();
+                    if (propertyType >= 1 && propertyType <= 3) {
+                    if (propertyType==Finals.APARTMENT){
+                        do {
+
+                            System.out.println("Which floor is the apartment located? ");
+                            floor= scanner.nextInt();
+                        } while (floor<-1);
+
+                    }
+                    do {
+                        System.out.println("How many rooms are in the property? ");
+                        roomQuantity=scanner.nextInt();
+                    }while ((roomQuantity % 1 != 0.5 && roomQuantity % 1 != 0));
+                    do {
+                        System.out.println("What is the house number of the property? ");
+                        houseNumber= scanner.nextInt();
+                    } while (houseNumber<0);
+                    do {
+                        System.out.println("Is the property for sale or rent? \n 1. Sale. \n 2. Rent");
+                        saleOrRent= scanner.nextInt();
+                    } while (saleOrRent<1 || saleOrRent>2);
+                    if (saleOrRent==Finals.FOR_SALE){
+                        isForRent=false;
+                    } else {
+                        isForRent=true;
+                    }
+
+                    do {
+                        System.out.println("What is the price of the property you want to publish? ");
+                        price=scanner.nextDouble();
+                    }while (price<0);
+
+                    Property publishedProperty = new Property(chosenCity, streetName, roomQuantity, price, propertyType, isForRent, houseNumber, floor, user);
+                        Property [] publishedPropertiesArray;
+                    if (this.properties!=null){
+                    publishedPropertiesArray = new Property[this.properties.length+Finals.FIRST_NUMBER];
+                    for (int j = 0 ; j < this.properties.length; j++){
+                        publishedPropertiesArray[j]= this.properties[j];
+                    }} else { publishedPropertiesArray=new Property[Finals.FIRST_NUMBER];
+
+                    }
+                    publishedPropertiesArray[publishedPropertiesArray.length-Finals.FIRST_NUMBER]=publishedProperty;
+                        this.properties=publishedPropertiesArray;
+
+                    } else {
+                        System.out.println("The option you chose is invalid. ");
+                        isPropertyPublished = false;
+                    }
 
                 }
-
-
             }
         }
         return isPropertyPublished;
@@ -231,7 +295,7 @@ public class RealEstate {
         }
     }
 
-    void printProperties(User user) {
+    public void printProperties(User user) {
         boolean isExist = false;
         if (this.properties != null) {
             for (int i = 0; i < this.properties.length; i++) {
@@ -247,7 +311,7 @@ public class RealEstate {
         }
     }
 
-    void removeProperty(User user) {
+    public void removeProperty(User user) {
         Scanner scanner = new Scanner(System.in);
         boolean isPublished = false;
         if (this.properties != null) {
@@ -259,91 +323,176 @@ public class RealEstate {
             if (isPublished == false) {
                 System.out.println("You haven't published any properties.");
             } else {
-                int [] arrayOfPropertiesIndex;
-                int indexChecker=0;
-                if (user.getIsMediator()==true){
+                int[] arrayOfPropertiesIndex;
+                int indexChecker = 0;
+                if (user.getIsMediator() == true) {
                     arrayOfPropertiesIndex = new int[Finals.MEDIATOR_PROPERTY_LIMIT];
                 } else {
                     arrayOfPropertiesIndex = new int[Finals.USER_PROPERTY_LIMIT];
                 }
                 for (int i = 0; i < this.properties.length; i++) {
                     if (user.getUserName().equals(this.properties[i].getUser().getUserName())) {
-                        System.out.println("The properties are: " + indexChecker+1 + this.properties[i]);
-                        arrayOfPropertiesIndex[indexChecker]=i;
+                        System.out.println("The properties are: " + (indexChecker + 1) + this.properties[i]);
+                        arrayOfPropertiesIndex[indexChecker] = i;
                         indexChecker++;
 
                     }
                 }
-                boolean isIndexValid=false;
+                boolean isIndexValid = false;
                 int propertyRemover;
                 do {
                     System.out.println("Please enter the number of the property you want to remove: ");
-                    propertyRemover= scanner.nextInt();
-                    for (int i = 1; i<arrayOfPropertiesIndex.length;i++){
-                        if (arrayOfPropertiesIndex[i] !=0 && propertyRemover == (i)){
-                            isIndexValid=true;
+                    propertyRemover = scanner.nextInt();
+                    for (int i = 0; i < arrayOfPropertiesIndex.length; i++) {
+                        if (propertyRemover == (i)) {
+                            isIndexValid = true;
                             break;
                         }
                     }
-                } while (isIndexValid==false);
-                Property [] propertiesArray = new Property[this.properties.length-1];
+                } while (isIndexValid == false);
+                Property[] propertiesArray = new Property[this.properties.length - 1];
                 int newPropertyArray = 0;
-                for (int i = 0 ; i < this.properties.length;i++){
-                    if (arrayOfPropertiesIndex[propertyRemover-1]==i){
+                for (int i = 0; i < this.properties.length; i++) {
+                    if (arrayOfPropertiesIndex[propertyRemover - 1] == i) {
                         continue;
 
                     } else {
-                        propertiesArray[newPropertyArray]=this.properties[i];
+                        propertiesArray[newPropertyArray] = this.properties[i];
                         newPropertyArray++;
                     }
 
                 }
-                this.properties=propertiesArray;
+                this.properties = propertiesArray;
                 System.out.println("The property you chose to remove has been removed successfully! ");
-
-
 
 
             }
 
+        } else {
+            System.out.println("There are no properties to remove. ");
         }
     }
-    Property [] search () {
-        Property [] propertyFilter= new Property[]{};
+
+    public Property[] search() {
+        Property[] propertyFilterArray;
         Scanner scanner = new Scanner(System.in);
         int saleOrRentChooser;
         boolean isForRent = true;
-        System.out.println("Are you interested in a property for sale or rent? " + "\n" + "1.For sale." + "\n" + "2.For rent. ");
-        saleOrRentChooser=scanner.nextInt();
-        if (saleOrRentChooser==Finals.FOR_SALE){
-            isForRent=false;
-        } else {
-            saleOrRentChooser=Finals.FOR_RENT;
-            isForRent=true;
+
+        do {
+            System.out.println("""
+                    Are you interested in a property for sale or rent?\s
+                    1.For sale.
+                    2.For rent.\s""");
+            saleOrRentChooser = scanner.nextInt();
+        } while ((saleOrRentChooser < 1 || saleOrRentChooser > 2) && (saleOrRentChooser != -999));
+        if (saleOrRentChooser == Finals.FOR_SALE) {
+            isForRent = false;
         }
-        int roomQuantity;
         int propertySelector;
+        do {
+            System.out.println("""
+                    What property are you searching for?\s
+                    1.Apartment.
+                    2.Penthouse.
+                    3.Private house.\s""");
+            propertySelector = scanner.nextInt();
+        } while ((propertySelector < 1 || propertySelector > 3) && (propertySelector != -999));
+        float roomQuantity;
+        boolean isValidRoomQuantity = true;
+        do {
+            System.out.println("How many rooms would you like to have? ");
+            roomQuantity = scanner.nextFloat();
+            if (isValidRoomQuantity == false) {
+                System.out.println("Please try again! (Whole number or .5 added to the whole number.) ");
+            }
+            isValidRoomQuantity = false;
+        } while ((roomQuantity % 1 != 0.5 && roomQuantity % 1 != 0) || (roomQuantity != -999) && (roomQuantity < 0));
+        double minimumPrice;
+        double maximumPrice;
+        boolean isValidMinimumPrice = true;
+        boolean isValidMaximumPrice = true;
+        do {
+            System.out.println("What is the minimum price you want? ");
+            minimumPrice = scanner.nextDouble();
+            if (isValidMinimumPrice == false) {
+                System.out.println("The number you entered is below 0, please try again! ");
+            }
+            isValidMinimumPrice = false;
 
-        System.out.println("""
-                What property are you searching for?\s
-                1.Apartment.
-                2.Penthouse.
-                3.Private house.""");
+        } while ((minimumPrice < 0) && (minimumPrice != -999));
+        do {
+            System.out.println("What is the maximum price you want? ");
+            maximumPrice = scanner.nextDouble();
+            if (isValidMaximumPrice == false) {
+                System.out.println("The number you entered is lower than your minimum price! try again.");
+            }
+            isValidMaximumPrice = false;
+        } while (maximumPrice < minimumPrice && maximumPrice != -999);
 
-        System.out.println("How many rooms would you like to have? ");
+        int propertyFilterCounter = 0;
+        for (int i = 0 ; i < this.properties.length; i++){
+            if (propertySearchFilter(saleOrRentChooser, isForRent, propertySelector, roomQuantity, minimumPrice, maximumPrice, i)==true){
+                propertyFilterCounter++;
+        }
+        }
+        propertyFilterArray = new Property[propertyFilterCounter];
+        int indexOfPropertyFilterArray=0;
+        for (int i = 0; i < this.properties.length; i++){
+            if (propertySearchFilter(saleOrRentChooser, isForRent, propertySelector, roomQuantity, minimumPrice, maximumPrice, i)==true){
+                propertyFilterArray[indexOfPropertyFilterArray]=this.properties[i];
+                indexOfPropertyFilterArray++;
+            }
+        }
+            return propertyFilterArray;
+    }
 
 
-        System.out.println("What is the minimum-maximum price you want?");
-
-
-
-
-
-
-
-
-
-
-        return propertyFilter;
+    public boolean propertySearchFilter(int saleOrRentChooser, boolean isForRent, int propertySelector, float roomQuantity, double minimumPrice, double maximumPrice, int index) {
+        boolean isValidFilter = false;
+        if (saleOrRentChooser != -999) {
+            if (isForRent == this.properties[index].getIsForRent()) {
+                isValidFilter = true;
+            }
+        }
+        if (isValidFilter == true) {
+            if (propertySelector != -999) {
+                if (propertySelector == this.properties[index].getPropertyType()) {
+                    isValidFilter = true;
+                } else {
+                    isValidFilter = false;
+                }
+            }
+            if (isValidFilter = true) {
+                if (roomQuantity != -999) {
+                    if (roomQuantity == this.properties[index].getRoomQuantity()) {
+                        isValidFilter = true;
+                    } else {
+                        isValidFilter = false;
+                    }
+                }
+                if (isValidFilter == true) {
+                    if (minimumPrice != -999) {
+                        if (minimumPrice <= this.properties[index].getPrice()) {
+                            isValidFilter = true;
+                        } else {
+                            isValidFilter = false;
+                        }
+                    }
+                    if (isValidFilter = true) {
+                        if (maximumPrice != -999) {
+                            if (maximumPrice >= this.properties[index].getPrice()) {
+                                isValidFilter = true;
+                            } else {
+                                isValidFilter = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return isValidFilter;
     }
 }
+
+

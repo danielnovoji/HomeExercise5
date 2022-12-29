@@ -1,32 +1,63 @@
 public class Property {
 
     private City city;
+
     private String street;
-    private int roomQuantity;
-    private int price;
-    private int propertyType;
+
+    private float roomQuantity;
+
+    private double price;
+
+    private Integer propertyType;
+
     private boolean isForRent;
+
     private int houseNumber;
+
     private int floorNumber;
     private User user;
+    public Property(City city, String street, float roomQuantity, double price, Integer propertyType, boolean isForRent, int houseNumber, int floorNumber, User user) {
+        this.city = city;
+        this.street = street;
+        this.roomQuantity = roomQuantity;
+        this.price = price;
+        if (propertyTypeValidation(propertyType)){
+            this.propertyType = propertyType;
+        } else {
+            this.propertyType = null;
+        }
+        this.isForRent = isForRent;
+        this.houseNumber = houseNumber;
+        this.floorNumber = floorNumber;
+        this.user = user;
 
+    }
+    public boolean propertyTypeValidation (int propertyType) {
+        boolean isPropertyTypeValid = false;
+        if (propertyType >= Finals.APARTMENT && propertyType <= Finals.PRIVATE_HOUSE) {
+            isPropertyTypeValid=true;
+        }
+        return isPropertyTypeValid;
 
-    User getUser() {
+    }
+    public User getUser() {
         return this.user;
     }
+
     public String toString () {
         String output = "";
         output += "The address of the property: " + this.city + "-" + this.street + " " + this.houseNumber + "\n";
-        output += "The property type is: " + this.getPropertyType() + "-";
-        output += "For" + getPropertyStatus() + ":";
+        output += "The property type is: " + this.getPrintPropertyType() + "-";
+        output += "For" + getPrintPropertyStatus() + ":";
         output += this.roomQuantity + "rooms,";
         output += "floor" + this.floorNumber + "\n";
         output += "Price: " + this.price + "$";
-        output += "Contact info: " + this.user + user.getPhoneNumber() + "(" + getUserStatus() + ")";
+        output += "Contact info: " + this.user.getUserName()+ this.user.getPhoneNumber() + "(" + getUserStatus() + ")";
         return output;
 
     }
-    public String getPropertyType () {
+
+    public String getPrintPropertyType() {
         String propertyType= "";
         switch (this.propertyType) {
             case Finals.PENTHOUSE -> propertyType= "Penthouse";
@@ -34,9 +65,9 @@ public class Property {
             case Finals.PRIVATE_HOUSE -> propertyType = "Private house";
         } return propertyType;
     }
-    private String getPropertyStatus () {
+    private String getPrintPropertyStatus() {
         String propertyStatus= "";
-        if (isForRent = true) {
+        if (this.isForRent == true) {
             propertyStatus = "rent";
         } else {
             propertyStatus= "sale";
@@ -45,12 +76,30 @@ public class Property {
     }
     private String getUserStatus () {
         String userStatus = "";
-        if (user.getIsMediator() == true){
+        if (this.user.getIsMediator() == true){
             userStatus = "real estate broker";
         } else {
             userStatus = "Regular user";
         }
         return userStatus;
     }
+    public boolean getIsForRent() {
+        return isForRent;
+    }
 
+    public Integer getPropertyType() {
+        return propertyType;
+    }
+
+    public void setPropertyType(Integer propertyType) {
+        this.propertyType = propertyType;
+    }
+
+    public float getRoomQuantity() {
+        return roomQuantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 }
