@@ -9,7 +9,7 @@ public class User {
     private String phoneNumber;
     private boolean isMediator;
 
-    public User(String userName, String password,String phoneNumber,boolean isMediator){
+    public User(String userName, String password,String phoneNumber,boolean isMediator){ // O(1)
         this.userName=userName;
         if (passwordValidation(password)){
             this.password=password;
@@ -27,8 +27,8 @@ public class User {
 
     public String getUserName() {
         return this.userName;
-    }
-    public String toString () {
+    } // O(1)
+    public String toString () { // O(1)
         String output="";
         output += "The new user is: " + this.userName + "Password: " + this.password + "Phone number: " + this.phoneNumber + "Mediator/regular user: " + isMediator;
 
@@ -36,11 +36,11 @@ public class User {
     }
     public String getPassword () {
         return this.password;
-    }
+    } // O(1)
     public boolean getIsMediator () {
         return this.isMediator;
-    }
-    public boolean passwordValidation(String userPassword) {
+    } // O(1)
+    public boolean passwordValidation(String userPassword) { // O(n)
         boolean isValid = true;
         String digits = "0123456789";
         String necessaryChar = "%_$";
@@ -61,7 +61,7 @@ public class User {
 
     }
 
-    public boolean checkPhoneNumber(String phoneNumber) {
+    public boolean checkPhoneNumber(String phoneNumber) { // O(n)
         boolean isValid = true;
         String numbers = "0123456789";
         if (phoneNumber.length() != 10) {

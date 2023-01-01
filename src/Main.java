@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) { // O(n^2)
         RealEstate realEstate= new RealEstate();
         int userChoice=0;
         Scanner scanner = new Scanner(System.in);
@@ -12,7 +12,7 @@ public class Main {
             System.out.println("3. Exit the program. ");
             userChoice = scanner.nextInt();
 
-        } while (userChoice>3 || userChoice<1);
+        } while (userChoice>Finals.THIRD_NUMBER || userChoice<Finals.FIRST_NUMBER);
         switch (userChoice) {
             case Finals.CREATE_ACCOUNT -> realEstate.createUser();
             case Finals.LOGIN_EXISTING_ACCOUNT -> {
@@ -55,9 +55,10 @@ public class Main {
                         case Finals.SEARCH_BY_DEFAULTS -> {
                             Property [] filterPropertiesArray=realEstate.search();
                             if (filterPropertiesArray!=null){
-                            for (int i = 0 ; i < filterPropertiesArray.length;i++){
-                                System.out.println(filterPropertiesArray[i]);
-                            }}
+                                for (int i = 0 ; i < filterPropertiesArray.length;i++){
+                                    System.out.println(filterPropertiesArray[i]);
+                                }}
+
                         }
 
                         }

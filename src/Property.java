@@ -4,7 +4,7 @@ public class Property {
 
     private String street;
 
-    private float roomQuantity;
+    private int roomQuantity;
 
     private double price;
 
@@ -16,7 +16,7 @@ public class Property {
 
     private int floorNumber;
     private User user;
-    public Property(City city, String street, float roomQuantity, double price, Integer propertyType, boolean isForRent, int houseNumber, int floorNumber, User user) {
+    public Property(City city, String street, int roomQuantity, double price, Integer propertyType, boolean isForRent, int houseNumber, int floorNumber, User user) { //  O(1)
         this.city = city;
         this.street = street;
         this.roomQuantity = roomQuantity;
@@ -32,7 +32,7 @@ public class Property {
         this.user = user;
 
     }
-    public boolean propertyTypeValidation (int propertyType) {
+    public boolean propertyTypeValidation (int propertyType) { // O(1)
         boolean isPropertyTypeValid = false;
         if (propertyType >= Finals.APARTMENT && propertyType <= Finals.PRIVATE_HOUSE) {
             isPropertyTypeValid=true;
@@ -42,22 +42,32 @@ public class Property {
     }
     public User getUser() {
         return this.user;
-    }
+    } // O(1)
 
-    public String toString () {
+    public String toString () { // O(1)
         String output = "";
-        output += "The address of the property: " + this.city + "-" + this.street + " " + this.houseNumber + "\n";
-        output += "The property type is: " + this.getPrintPropertyType() + "-";
-        output += "For" + getPrintPropertyStatus() + ":";
-        output += this.roomQuantity + "rooms,";
-        output += "floor" + this.floorNumber + "\n";
-        output += "Price: " + this.price + "$";
-        output += "Contact info: " + this.user.getUserName()+ this.user.getPhoneNumber() + "(" + getUserStatus() + ")";
+        output= "The address of the property: " +"\n" + this.city.getCityName() + "-"  + this.street + " "  + this.houseNumber + "\n" +
+                "The property type is: " + this.getPrintPropertyType() + "-" + "For " +
+                getPrintPropertyStatus() +": "  +  + this.roomQuantity + " rooms "+"\n" +getPrintFloorNumber() + " "  + "\n" + "Price: " +this.price + "$ " + "\n" + "Contact information: "
+                + this.user.getUserName() +" "+
+                this.user.getPhoneNumber() + " " + "(" +getUserStatus() + ")";
+
         return output;
 
     }
+    public String getPrintFloorNumber () { // O(1)
+        String floorNumber= "";
+        if (this.propertyType==Finals.APARTMENT){
+            floorNumber+="Floor " + this.floorNumber;
 
-    public String getPrintPropertyType() {
+        }
+
+
+        return floorNumber;
+
+    }
+
+    public String getPrintPropertyType() { // O(1)
         String propertyType= "";
         switch (this.propertyType) {
             case Finals.PENTHOUSE -> propertyType= "Penthouse";
@@ -65,7 +75,7 @@ public class Property {
             case Finals.PRIVATE_HOUSE -> propertyType = "Private house";
         } return propertyType;
     }
-    private String getPrintPropertyStatus() {
+    private String getPrintPropertyStatus() { // O(1)
         String propertyStatus= "";
         if (this.isForRent == true) {
             propertyStatus = "rent";
@@ -74,7 +84,7 @@ public class Property {
         }
         return propertyStatus;
     }
-    private String getUserStatus () {
+    private String getUserStatus () { // O(1)
         String userStatus = "";
         if (this.user.getIsMediator() == true){
             userStatus = "real estate broker";
@@ -85,21 +95,19 @@ public class Property {
     }
     public boolean getIsForRent() {
         return isForRent;
-    }
+    } // O(1)
 
     public Integer getPropertyType() {
         return propertyType;
-    }
+    } // O(1)
 
-    public void setPropertyType(Integer propertyType) {
-        this.propertyType = propertyType;
-    }
+
 
     public float getRoomQuantity() {
         return roomQuantity;
-    }
+    } // O(1)
 
     public double getPrice() {
         return price;
-    }
+    } // O(1)
 }

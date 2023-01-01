@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f72c1307-fa1b-49df-b0b2-5edc2a818c12" name="Changes" comment="">
+    <list default="true" id="f72c1307-fa1b-49df-b0b2-5edc2a818c12" name="Changes" comment="da!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/City.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Finals.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Finals.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Property.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Property.java" afterDir="false" />
@@ -76,8 +77,18 @@
       <workItem from="1671460376687" duration="6599000" />
       <workItem from="1671636882514" duration="7502000" />
       <workItem from="1672162166149" duration="9297000" />
-      <workItem from="1672339082508" duration="18833000" />
+      <workItem from="1672339082508" duration="19465000" />
+      <workItem from="1672427794447" duration="11018000" />
+      <workItem from="1672521457017" duration="4108000" />
     </task>
+    <task id="LOCAL-00001" summary="da!">
+      <created>1672358181969</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672358181969</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,15 +105,8 @@
       </map>
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/RealEstate.java</url>
-          <line>263</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="da!" />
+    <option name="LAST_COMMIT_MESSAGE" value="da!" />
   </component>
 </project>

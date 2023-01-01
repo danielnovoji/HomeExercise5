@@ -4,15 +4,15 @@ public class City {
     private String geographicDistrict;
 
     public String getCityName() {
-        return cityName;
+        return cityName; // O(1)
     }
 
     public String getGeographicDistrict() {
-        return geographicDistrict;
+        return geographicDistrict; // O(1)
     }
 
     public String getStreetList() {
-        return streetList;
+        return streetList;   // O(1)
     }
 
     private String streetList;
@@ -21,7 +21,7 @@ public class City {
         this.cityName = cityName;
         this.geographicDistrict = geographicDistrict;
         this.streetList = streetList;
-    }
+    } // O(1)
 
     public String toString() {
         String cityContent;
@@ -29,6 +29,6 @@ public class City {
                 "The geographic district is: " + this.geographicDistrict +
                 "The name of the street is: " + this.streetList;
         return cityContent;
-    }
+    } // O(1)
 
 }
